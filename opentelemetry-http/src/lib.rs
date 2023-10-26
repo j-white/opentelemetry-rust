@@ -63,21 +63,6 @@ mod reqwest {
     use std::convert::TryInto;
 
     #[async_trait]
-    impl HttpClient for reqwest::Client {
-        async fn send(&self, request: Request<Vec<u8>>) -> Result<Response<Bytes>, HttpError> {
-            let request = request.try_into()?;
-            let mut response = self.execute(request).await?;
-            let headers = std::mem::take(response.headers_mut());
-            let mut http_response = Response::builder()
-                .status(response.status())
-                .body(response.bytes().await?)?;
-            *http_response.headers_mut() = headers;
-
-            Ok(http_response)
-        }
-    }
-
-    #[async_trait]
     impl HttpClient for reqwest::blocking::Client {
         async fn send(&self, request: Request<Vec<u8>>) -> Result<Response<Bytes>, HttpError> {
             let request = request.try_into()?;

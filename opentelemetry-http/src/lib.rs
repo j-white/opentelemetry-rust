@@ -64,7 +64,7 @@ mod reqwest {
 
     #[async_trait]
     impl HttpClient for reqwest::Client {
-        async fn send(&self, request: Request<Vec<u8>>) -> Result<Response<Bytes>, HttpError> {
+        fn send(&self, request: Request<Vec<u8>>) -> Result<Response<Bytes>, HttpError> {
             let request = request.try_into()?;
             let response = self.execute(request).await;
             match response {

@@ -9,6 +9,9 @@ license = "Apache-2.0"
 edition = "2021"
 rust-version = "1.64"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 async-trait = "0.1"
 bytes = "1"
@@ -19,3 +22,4 @@ opentelemetry = { version = "0.21", path = "../opentelemetry", features = ["trac
 reqwest = { version = "0.11", default-features = false, features = ["blocking"], optional = true }
 surf = { version = "2.0", default-features = false, optional = true }
 tokio = { version = "1.0", default-features = false, features = ["time"], optional = true }
+

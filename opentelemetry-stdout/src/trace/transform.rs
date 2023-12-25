@@ -97,7 +97,7 @@ impl From<opentelemetry_sdk::export::trace::SpanData> for Span {
             span_id: value.span_context.span_id().to_string(),
             trace_state: Some(value.span_context.trace_state().header()).filter(|s| !s.is_empty()),
             parent_span_id: Some(value.parent_span_id.to_string())
-                .filter(|s| s != "0")
+                .filter(|s| s != "0" && s != "0000000000000000")
                 .unwrap_or_default(),
             name: value.name,
             kind: value.span_kind.into(),

@@ -68,6 +68,7 @@ struct Span {
     span_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     trace_state: Option<String>,
+    #[serde(skip_serializing_if = "String::is_empty")]
     parent_span_id: String,
     name: Cow<'static, str>,
     kind: SpanKind,
